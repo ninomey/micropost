@@ -12,7 +12,6 @@
                 </div>
             </div>
             @include('user_follow.follow_button', ['user' => $user])
-            @include('favorite.favorite_button', ['user' => $user])
             
         </aside>
         <div class="col-xs-8">

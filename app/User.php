@@ -89,10 +89,12 @@ class User extends Authenticatable
     
     
     
+    
+    
     //favorite親
     public function favoritings()
     {
-        return $this->belongsToMany(Micropost::class, 'favorite', 'micro_id' ,'user_id')->withTimestamps();
+        return $this->belongsToMany(Micropost::class, 'favorite' ,'user_id','micro_id')->withTimestamps();
     }
     
     /**
@@ -107,6 +109,7 @@ class User extends Authenticatable
     {
         // confirm if already favorite
         $exist = $this->is_favorite($microId);
+        $its_me = $this->id ==$microId;
         
         if ($exist) {
             // do nothing if already favorite
@@ -122,6 +125,7 @@ class User extends Authenticatable
     {
         // confirming if already following
         $exist = $this->is_favorite($microId);
+        $its_me = $this->id ==$microId;
         
         if ($exist) {
             // stop following if following
@@ -137,6 +141,9 @@ class User extends Authenticatable
     public function is_favorite($microId) {
         return $this->favoritings()->where('micro_id', $microId)->exists();
     }
+    
+   
+    
     
     
 

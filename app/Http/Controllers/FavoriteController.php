@@ -10,6 +10,8 @@ class FavoriteController extends Controller
     {
         \Auth::user()->favorite($id);
         return redirect()->back();
+        
+        
     }
 
     public function destroy($id)
